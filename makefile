@@ -5,18 +5,18 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 .PHONY: help up start stop build test logs test
 
 up: #start forground
-	docker compose -f docker-compose.yml up $(c)
+	docker compose -f docker-compose.yml up
 
 start: #start background
-	docker compose -f docker-compose.yml up $(c) -d
+	docker compose -f docker-compose.yml up -d
 
 stop: #stop docker compose
-	docker compose -f docker-compose.yml stop $(c)
+	docker compose -f docker-compose.yml stop
 
 build: #build dockerimage
-	docker compose -f docker-compose.yml build $(c)
+	docker compose -f docker-compose.yml build
 logs:  #get log stream
-	docker compose -f docker-compose.yml logs --tail=100 -f $(c)
+	docker compose -f docker-compose.yml logs --tail=100 -f
 
 test:  #test the application
 	curl -X GET  http://127.0.0.1:8000/
